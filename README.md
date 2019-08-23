@@ -1,24 +1,24 @@
-# README
+### データベース構造
+#### モデル名：User
+<table>
+<tr><th>カラム名</th><th>データ型</th>
+<tr><td>name</td><td>string</td></tr>
+<tr><td>password_digest</td><td>string</td></tr>
+</table>
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+#### モデル名：Task
+<table>
+<tr><th>カラム名</th><th>データ型</th>
+<tr><td>user_id</td><td>bigint</td></tr>
+<tr><td>body</td><td>text</td></tr>
+<tr><td>lasttask</td><td>datetime</td></tr>
+<tr><td>priority</td><td>integer</td></tr>
+<tr><td>status</td><td>string</td></tr>
+</table>
 
-Things you may want to cover:
-
-* Ruby version
-
-* System dependencies
-
-* Configuration
-
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+#### モデル名：Label
+<table>
+<tr><th>カラム名</th><th>データ型</th>
+<tr><td>task_id</td><td>bigint</td></tr>
+<tr><td>attribute</td><td>text</td></tr>
+</table>
