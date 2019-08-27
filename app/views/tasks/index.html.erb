@@ -1,0 +1,9 @@
+<h1>Task一覧</h1>
+    <% @task.each do |task| %>
+        <p><%= task.body %></p>
+        <p><%= task.lasttask %></p>
+        <p><%= task.priority %></p>
+        <p><%= task.status %></p>
+    <% end %>
+  </div>
+</div>
