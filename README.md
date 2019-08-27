@@ -11,7 +11,7 @@
 <tr><th>カラム名</th><th>データ型</th>
 <tr><td>user_id</td><td>bigint</td></tr>
 <tr><td>body</td><td>text</td></tr>
-<tr><td>lasttask</td><td>datetime</td></tr>
+<tr><td>deadline</td><td>datetime</td></tr>
 <tr><td>priority</td><td>integer</td></tr>
 <tr><td>status</td><td>string</td></tr>
 </table>
