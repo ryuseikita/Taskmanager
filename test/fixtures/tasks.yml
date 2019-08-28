@@ -1,0 +1,13 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  body: MyText
+  lasttask: 2019-08-25 13:31:48
+  priority: 1
+  status: MyString
+
+two:
+  body: MyText
+  lasttask: 2019-08-25 13:31:48
+  priority: 1
+  status: MyString
