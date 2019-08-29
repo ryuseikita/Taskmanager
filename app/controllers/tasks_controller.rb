@@ -1,5 +1,5 @@
 class TasksController < ApplicationController
-  before_action :set_task, only:[:edit,:update]
+  before_action :set_task, only:[:edit,:update,:destroy]
 
   def index
     @task = Task.all
@@ -28,6 +28,11 @@ class TasksController < ApplicationController
     else
      render 'edit'
     end
+  end
+
+  def destroy
+    @task.delete
+    redirect_to tasks_path, notice: "タスクを削除しました！"
   end
 
   private

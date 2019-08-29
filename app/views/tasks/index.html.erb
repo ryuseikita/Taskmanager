@@ -16,6 +16,7 @@
         <td><%= task.priority %></td>
         <td><%= task.status %></td>
         <td><%= link_to '編集', edit_task_path(task) %></td>
+        <td><%= link_to '削除', task, method: :delete %></td>
       </tr>
     <% end %>
   </table>
