@@ -1,5 +1,5 @@
 class TasksController < ApplicationController
-  before_action :set_task, only:[:edit,:update,:destroy]
+  before_action :set_task, only:[:edit,:update,:show,:destroy]
 
   def index
     @task = Task.all
@@ -28,6 +28,9 @@ class TasksController < ApplicationController
     else
      render 'edit'
     end
+  end
+
+  def show
   end
 
   def destroy

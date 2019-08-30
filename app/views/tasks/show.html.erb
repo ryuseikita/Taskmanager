@@ -1,0 +1,13 @@
+<h1>タスクの詳細</h1>
+  <p>タイトル</p>
+  <p><%= @task.title %></p>
+  <p>詳細</p>
+  <p><%= @task.details %></p>
+  <p>期限</p>
+  <p><%= @task.deadline.strftime("%Y年%m月%d日")  %></p>
+  <p>優先順位</p>
+  <p><%= @task.priority %></p>
+  <p>ステータス</p>
+  <p><%= @task.status %></p>
+
+<%= link_to 'タスク一覧', tasks_path %>
