@@ -1,9 +1,25 @@
-<h1>Task一覧</h1>
+<h1>タスク一覧</h1>
+<p><%= notice %></p>
+  <table>
+    <tr >
+      <td>タイトル</td>
+      <td>詳細</td>
+      <td>期限</td>
+      <td>優先順位</td>
+      <td>ステータス</td>
+    </tr>
     <% @task.each do |task| %>
-        <p><%= task.body %></p>
-        <p><%= task.lasttask %></p>
-        <p><%= task.priority %></p>
-        <p><%= task.status %></p>
+      <tr>
+        <td><%= task.title %></td>
+        <td><%= task.details %></td>
+        <td><%= task.deadline.strftime("%Y年%m月%d日")  %></td>
+        <td><%= task.priority %></td>
+        <td><%= task.status %></td>
+        <td><%= link_to '詳細', task_path(task) %></td>
+        <td><%= link_to '編集', edit_task_path(task) %></td>
+        <td><%= link_to '削除', task, method: :delete %></td>
+      </tr>
     <% end %>
-  </div>
-</div>
+  </table>
+
+<%= link_to 'タスク登録', new_task_path %>

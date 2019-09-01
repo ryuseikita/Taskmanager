@@ -1,0 +1,22 @@
+  <% if @task.errors.any? %>
+    <h2><%= @task.errors.count %>件のエラーがあります。</h2>
+      <ul>
+        <% @task.errors.full_messages.each do |msg| %>
+          <li><%= msg %></li>
+        <% end %>
+      </ul>
+  <% end %>
+    <%= form_with(model: @task, local: true ) do |form| %>
+      <%= form.label :title %>
+      <%= form.text_field :title %>
+      <%= form.label :details %>
+      <%= form.text_field :details %>
+      <%= form.label :deadline %>
+      <%= form.text_field :deadline %>
+      <%= form.label :priority %>
+      <%= form.text_field :priority %>
+      <%= form.label :status %>
+      <%= form.text_field :status %>
+      <%= form.submit %>
+    <% end %>
+    <%= link_to "タスク一覧画面にもどる", tasks_path%>
