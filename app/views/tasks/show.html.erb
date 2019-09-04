@@ -1,13 +1,13 @@
-<h1>タスクの詳細</h1>
-  <p>タイトル</p>
+<h1><%= t('.title') %></h1>
+  <p><%= t('tasks.title') %></p>
   <p><%= @task.title %></p>
-  <p>詳細</p>
+  <p><%= t('tasks.details') %></p>
   <p><%= @task.details %></p>
-  <p>期限</p>
+  <p><%= t('tasks.deadline') %></p>
   <p><%= @task.deadline.strftime("%Y年%m月%d日")  %></p>
-  <p>優先順位</p>
+  <p><%= t('tasks.priority') %></p>
   <p><%= @task.priority %></p>
-  <p>ステータス</p>
+  <p><%= t('tasks.statas') %></p>
   <p><%= @task.status %></p>
 
-<%= link_to 'タスク一覧', tasks_path %>
+<%= link_to t('tasks.back'), tasks_path %>
