@@ -5,6 +5,7 @@ Bundler.require(*Rails.groups)
 
 module Taskmanager
   class Application < Rails::Application
+    config.i18n.default_locale = :ja
     config.load_defaults 5.1
     config.generators do |g|
       g.assets false

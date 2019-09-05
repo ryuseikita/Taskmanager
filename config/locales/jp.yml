@@ -1,0 +1,21 @@
+ja:
+  tasks:
+    index:
+      title: タスクの一覧
+      edit: 編集
+      show: 詳細
+      delete: 削除
+    edit:
+      title: タスクの編集
+    new:
+      title: タスクの作成
+    show:
+      title: タスクの詳細
+
+    title: タスク
+    details: 詳細
+    deadline: 期限
+    priority: 優先順位
+    status: ステータス
+    new_task: 新規作成
+    back: 一覧にもどる
