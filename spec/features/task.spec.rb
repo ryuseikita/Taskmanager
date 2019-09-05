@@ -11,6 +11,7 @@ FactoryBot.define do
     deadline { '2019/09/10' }
     priority { '99' }
     status { 'Factoryで作ったデフォルトのコンテント１' }
+    created_at {'2019/10/05 00:00:00'}
   end
 
   # 作成するテストデータの名前を「second_task」とします
@@ -21,15 +22,17 @@ FactoryBot.define do
     details { 'Factoryで作ったデフォルトのコンテント2' }
     deadline { '2019/08/26' }
     priority { '99' }
-    status { 'Factoryで作ったデフォルトのコンテント１' }
+    status { 'Factoryで作ったデフォルトのコンテント2' }
+    created_at {'2019/10/06 00:00:00'}
   end
   factory :third_task, class: Task do
     id{'4'}
     title { 'test04' }
-    details { 'Factoryで作ったデフォルトのコンテント2' }
+    details { 'Factoryで作ったデフォルトのコンテント3' }
     deadline { '2019/08/26' }
     priority { '99' }
-    status { 'Factoryで作ったデフォルトのコンテント１' }
+    status { 'Factoryで作ったデフォルトのコンテント3' }
+    created_at {'2019/10/07 00:00:00'}
   end
 
   factory :task_another, class: Task do
@@ -39,6 +42,7 @@ FactoryBot.define do
     deadline { '2019/08/26' }
     priority { '99' }
     status { 'Factoryで作ったデフォルトのコンテント１' }
+    created_at {'2019/10/08 00:00:00'}
   end
 end
 # このRSpec.featureの右側に、「タスク管理機能」のように、テスト項目の名称を書きます（do ~ endでグループ化されています）
@@ -73,11 +77,13 @@ RSpec.feature "タスク管理機能", type: :feature do
 
   scenario "タスク詳細のテスト" do
     visit task_path(5)
-    save_and_open_page
     expect(page).to have_content 'test05'
   end
 
   scenario "タスクが作成日時の降順に並んでいるかのテスト" do
-    
+    visit tasks_path
+    tasks = page.all('.title')
+
+    expect(tasks[0]).to have_content 'test05'
   end
 end
