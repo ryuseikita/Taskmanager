@@ -6,7 +6,7 @@ FactoryBot.define do
   # （実際に存在するクラス名と一致するテストデータの名前をつければ、そのクラスのテストデータを自動で作成します）
   factory :task do
     id{'2'}
-    title { 'testtesttest' }
+    title { 'test02' }
     details { 'samplesample' }
     deadline { '2019/09/10' }
     priority { '99' }
@@ -18,7 +18,7 @@ FactoryBot.define do
   # （存在しないクラス名の名前をつける場合、オプションで「このクラスのテストデータにしてください」と指定します）
   factory :second_task, class: Task do
     id{'3'}
-    title { 'Factoryで作ったデフォルトのタイトル2' }
+    title { 'test03' }
     details { 'Factoryで作ったデフォルトのコンテント2' }
     deadline { '2019/08/26' }
     priority { '99' }
@@ -59,8 +59,8 @@ RSpec.feature "タスク管理機能", type: :feature do
 
       # visitした（到着した）expect(page)に（タスク一覧ページに）「testtesttest」「samplesample」という文字列が
       # have_contentされているか？（含まれているか？）ということをexpectする（確認・期待する）テストを書いている
-      expect(page).to have_content 'testtesttest'
-      expect(page).to have_content 'samplesample'
+      expect(page).to have_content 'test02'
+      expect(page).to have_content 'test03'
   end
 
   scenario "タスク作成のテスト" do
@@ -69,7 +69,7 @@ RSpec.feature "タスク管理機能", type: :feature do
     fill_in 'task[title]', with: 'test01'
     fill_in 'task[details]', with: 'test01_詳細'
     fill_in 'task[deadline]', with: '2019/08/08'
-    fill_in 'task[priority]', with: '99'
+    select '99', from: 'task[priority]'
     fill_in 'task[status]', with: '未着手'
     click_on 'Create Task'
     expect(page).to have_content 'test01'
@@ -83,7 +83,9 @@ RSpec.feature "タスク管理機能", type: :feature do
   scenario "タスクが作成日時の降順に並んでいるかのテスト" do
     visit tasks_path
     tasks = page.all('.title')
-
     expect(tasks[0]).to have_content 'test05'
+    expect(tasks[1]).to have_content 'test04'
+    expect(tasks[2]).to have_content 'test03'
+    expect(tasks[3]).to have_content 'test02'
   end
 end

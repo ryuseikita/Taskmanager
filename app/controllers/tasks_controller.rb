@@ -6,7 +6,7 @@ class TasksController < ApplicationController
   end
 
   def new
-    @task = Task.new
+    @task = Task.new(deadline: Time.now.strftime("%Y/%m/%d 00:00"))
   end
 
   def create
@@ -46,5 +46,6 @@ class TasksController < ApplicationController
   def set_task
     @task = Task.find(params[:id])
   end
+
 
 end
