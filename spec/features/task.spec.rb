@@ -71,7 +71,7 @@ RSpec.feature "タスク管理機能", type: :feature do
     fill_in 'task[deadline]', with: '2019/08/08'
     select '99', from: 'task[priority]'
     fill_in 'task[status]', with: '未着手'
-    click_on 'Create Task'
+    click_on '登録する'
     expect(page).to have_content 'test01'
   end
 
