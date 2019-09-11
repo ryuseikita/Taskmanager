@@ -8,7 +8,7 @@ FactoryBot.define do
     id{'2'}
     title { 'test02' }
     details { 'samplesample' }
-    deadline { '2019/09/10' }
+    deadline { '2019/09/01' }
     priority { '99' }
     status { 'Factoryで作ったデフォルトのコンテント１' }
     created_at {'2019/10/05 00:00:00'}
@@ -20,7 +20,7 @@ FactoryBot.define do
     id{'3'}
     title { 'test03' }
     details { 'Factoryで作ったデフォルトのコンテント2' }
-    deadline { '2019/08/26' }
+    deadline { '2019/09/03' }
     priority { '99' }
     status { 'Factoryで作ったデフォルトのコンテント2' }
     created_at {'2019/10/06 00:00:00'}
@@ -29,7 +29,7 @@ FactoryBot.define do
     id{'4'}
     title { 'test04' }
     details { 'Factoryで作ったデフォルトのコンテント3' }
-    deadline { '2019/08/26' }
+    deadline { '2019/09/04' }
     priority { '99' }
     status { 'Factoryで作ったデフォルトのコンテント3' }
     created_at {'2019/10/07 00:00:00'}
@@ -39,7 +39,7 @@ FactoryBot.define do
     id{'5'}
     title { 'test05' }
     details { 'Factoryで作ったデフォルトのコンテント2' }
-    deadline { '2019/08/26' }
+    deadline { '2019/09/02' }
     priority { '99' }
     status { 'Factoryで作ったデフォルトのコンテント１' }
     created_at {'2019/10/08 00:00:00'}
@@ -68,7 +68,7 @@ RSpec.feature "タスク管理機能", type: :feature do
 
     fill_in 'task[title]', with: 'test01'
     fill_in 'task[details]', with: 'test01_詳細'
-    fill_in 'task[deadline]', with: '2019/08/08'
+    fill_in 'task[deadline]', with: '2019/08/01'
     select '99', from: 'task[priority]'
     fill_in 'task[status]', with: '未着手'
     click_on '登録する'
@@ -87,5 +87,16 @@ RSpec.feature "タスク管理機能", type: :feature do
     expect(tasks[1]).to have_content 'test04'
     expect(tasks[2]).to have_content 'test03'
     expect(tasks[3]).to have_content 'test02'
+  end
+
+  scenario "タスクが終了期限の降順に並んでいるかのテスト" do
+    visit tasks_path
+    click_on '終了期限でソートする'
+    tasks = page.all('.deadline')
+    save_and_open_page
+    expect(tasks[0]).to have_content '9月04日'
+    expect(tasks[1]).to have_content '9月03日'
+    expect(tasks[2]).to have_content '9月02日'
+    expect(tasks[3]).to have_content '9月01日'
   end
 end
