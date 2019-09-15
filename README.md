@@ -23,14 +23,14 @@
 <tr><td>attribute</td><td>text</td></tr>
 </table>
 
-####herokuデプロイ手順
-$ heroku login
-$ heroku create <アプリの名前>
-$ git push heroku master
-$ heroku run rails db:migrate
-$ git open
+#### herokuデプロイ手順
+$ heroku login<br>
+$ heroku create <アプリの名前><br>
+$ git push heroku master<br>
+$ heroku run rails db:migrate<br>
+$ heroku open<br>
 
 URL:https://rystaskmaneger.herokuapp.com
 
-####バージョン
+#### バージョン
 フレームワーク：Ruby on Rails　6.0.0
