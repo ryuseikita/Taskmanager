@@ -22,3 +22,15 @@
 <tr><td>task_id</td><td>bigint</td></tr>
 <tr><td>attribute</td><td>text</td></tr>
 </table>
+
+####herokuデプロイ手順
+$ heroku login
+$ heroku create <アプリの名前>
+$ git push heroku master
+$ heroku run rails db:migrate
+$ git open
+
+URL:https://rystaskmaneger.herokuapp.com
+
+####バージョン
+フレームワーク：Ruby on Rails　6.0.0

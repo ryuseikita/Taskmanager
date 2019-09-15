@@ -12,7 +12,7 @@
       <tr>
         <td class='title'><%= task.title %></td>
         <td><%= task.details %></td>
-        <td><%= task.deadline.strftime("%Y年%m月%d日")  %></td>
+        <td class='deadline'><%= task.deadline.strftime("%Y年%m月%d日")  %></td>
         <td><%= task.priority %></td>
         <td><%= task.status %></td>
         <td><%= link_to  t('.show') , task_path(task) %></td>
@@ -23,3 +23,4 @@
   </table>
 
 <%= link_to t('tasks.new_task'), new_task_path %>
+<%= link_to t('tasks.deadline_sort_task'), tasks_path(sort_expired: "true") %>
