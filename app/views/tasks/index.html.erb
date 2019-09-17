@@ -24,7 +24,7 @@
         <td><%= task.details %></td>
         <td class='deadline'><%= task.deadline.strftime("%Y年%m月%d日")  %></td>
         <td><%= task.priority %></td>
-        <td><%= task.status %></td>
+        <td class='status'><%= task.status %></td>
         <td><%= link_to  t('.show') , task_path(task) %></td>
         <td><%= link_to  t('.edit') , edit_task_path(task) %></td>
         <td><%= link_to  t('.delete') , task, method: :delete %></td>

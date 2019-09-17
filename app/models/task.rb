@@ -16,11 +16,11 @@ class Task < ApplicationRecord
       deadline_time_desc
     elsif parameter[:task].present?
       if  parameter[:task][:title].present? and parameter[:task][:status].present?
-        search_title_and_status(parameter[:task][:title],parameter[:task][:status])
+        search_title_and_status(parameter[:task][:title],parameter[:task][:status]).create_time_desc
       elsif parameter[:task][:title].present?
-        search_title(parameter[:task][:title])
+        search_title(parameter[:task][:title]).create_time_desc
       else
-        search_status(parameter[:task][:status])
+        search_status(parameter[:task][:status]).create_time_desc
       end
     else
       create_time_desc
