@@ -13,6 +13,12 @@ ja:
       edit: 編集
       show: 詳細
       delete: 削除
+      search: 検索する
+      default: 選択してください
+      not_start : 未着手
+      start: 着手
+      complete: 完了
+
     edit:
       title: タスクの編集
     new:
