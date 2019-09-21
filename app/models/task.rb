@@ -8,7 +8,7 @@ class Task < ApplicationRecord
   scope :create_time_desc, -> {order(created_at: :desc)}
   scope :deadline_time_desc, -> {order(deadline: :desc)}
   scope :search_title, -> (title){where("title LIKE ?", "%#{ title }%")}
-  scope :search_status, -> (status){where("status LIKE ?", "%#{ status }%")}
+  scope :search_status, -> (status){where("status LIKE ?", "#{ status }%")}
   scope :search_title_and_status, -> (title,status){search_title(title).search_status(status)}
 
   def self.list(parameter)
