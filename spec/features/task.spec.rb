@@ -125,6 +125,16 @@ RSpec.feature "タスク管理機能", type: :feature do
     expect(tasks[1]).to have_content 'test05'
   end
 
+  scenario "タスクのステータス検索ができるかのテスト" do
+    visit tasks_path
+    select '未着手', from: 'task[status]'
+    click_on '検索する'
+    tasks = page.all('.title')
+    expect(tasks.length).to eq 2
+    expect(tasks[0]).to have_content 'test04'
+    expect(tasks[1]).to have_content 'test03'
+  end
+
   scenario "タスクのタイトルとステータスの同時検索ができるかのテスト" do
     visit tasks_path
     fill_in 'task[title]', with: 'test05'
