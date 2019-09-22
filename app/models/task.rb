@@ -3,6 +3,7 @@ class Task < ApplicationRecord
   validates :details, presence: true
   validates :deadline, presence: true
   validates :priority, presence: true
+  enum priority:{low: 0,middle: 1,high: 2}
   validates :status, presence: true
 
   scope :create_time_desc, -> {order(created_at: :desc)}

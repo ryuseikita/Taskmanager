@@ -14,7 +14,7 @@
       <%= form.label :deadline %>
       <%= form.datetime_field :deadline %>
       <%= form.label :priority %>
-      <%= form.select :priority,[0,1,2,3,4,5,6,99] %>
+      <%= form.select :priority, Task.priorities.keys.map {|k| [t("enums.task.priority.#{k}"), k]} %>
       <%= form.label :status %>
       <%= form.select :status,["未着手","着手","完了"] %>
       <%= form.submit %>
