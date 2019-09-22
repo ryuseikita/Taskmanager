@@ -8,6 +8,7 @@ ja:
     status: ステータス
     new_task: 新規作成
     deadline_sort_task: 終了期限でソートする
+    priority_sort_task: 優先順位でソートする
     index:
       title: タスクの一覧
       edit: 編集
