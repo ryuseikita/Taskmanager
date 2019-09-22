@@ -16,8 +16,8 @@
       <%= form.label :priority %>
       <%= form.select :priority,[0,1,2,3,4,5,6,99] %>
       <%= form.label :status %>
-      <%= form.text_field :status %>
+      <%= form.select :status,["未着手","着手","完了"] %>
       <%= form.submit %>
     <% end %>
-    
+
     <%= link_to "タスク一覧画面にもどる", tasks_path%>

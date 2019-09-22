@@ -1,5 +1,15 @@
 <h1><%= t('.title') %></h1>
 <p><%= notice %></p>
+<%= form_with(model: Task.new,local: true, method: 'get', url: tasks_path) do |form| %>
+  <%= form.label :title_search %>
+  <%= form.text_field :title %>
+  <%= form.label :status_search %>
+  <%= form.select :status,[[t('.default'),""],[t('.not_start'),t('.not_start')],[t('.start'),t('.start')],[t('.complete'),t('.complete')]] %>
+
+  <%= form.hidden_field :search, value: "true"%>
+
+  <%= form.submit t('.search')%>
+<% end %>
   <table>
     <tr >
       <td><%= t('tasks.title') %></td>
@@ -8,13 +18,13 @@
       <td><%= t('tasks.priority') %></td>
       <td><%= t('tasks.status') %></td>
     </tr>
-    <% @task.each do |task| %>
+    <% @tasks.each do |task| %>
       <tr>
         <td class='title'><%= task.title %></td>
         <td><%= task.details %></td>
         <td class='deadline'><%= task.deadline.strftime("%Y年%m月%d日")  %></td>
         <td><%= task.priority %></td>
-        <td><%= task.status %></td>
+        <td class='status'><%= task.status %></td>
         <td><%= link_to  t('.show') , task_path(task) %></td>
         <td><%= link_to  t('.edit') , edit_task_path(task) %></td>
         <td><%= link_to  t('.delete') , task, method: :delete %></td>
