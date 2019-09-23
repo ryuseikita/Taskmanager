@@ -8,6 +8,7 @@ ja:
     status: ステータス
     new_task: 新規作成
     deadline_sort_task: 終了期限でソートする
+    priority_sort_task: 優先順位でソートする
     index:
       title: タスクの一覧
       edit: 編集
@@ -18,7 +19,6 @@ ja:
       not_start : 未着手
       start: 着手
       complete: 完了
-
     edit:
       title: タスクの編集
     new:
@@ -44,6 +44,12 @@ ja:
         status: ステータス
         new_task: 新規作成
         back: 一覧に戻る
+  enums:
+    task:
+      priority:
+        high: 高
+        middle: 中
+        low: 低
 
   date:
     abbr_day_names:

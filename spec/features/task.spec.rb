@@ -6,7 +6,7 @@ FactoryBot.define do
     title { 'test02' }
     details { 'samplesample' }
     deadline { '2019/09/01' }
-    priority { '99' }
+    priority { 'low' }
     status { '完了' }
     created_at {'2019/10/05 00:00:00'}
   end
@@ -15,7 +15,7 @@ FactoryBot.define do
     title { 'test03' }
     details { 'Factoryで作ったデフォルトのコンテント2' }
     deadline { '2019/09/03' }
-    priority { '99' }
+    priority { 'high' }
     status { '未着手' }
     created_at {'2019/10/06 00:00:00'}
   end
@@ -24,7 +24,7 @@ FactoryBot.define do
     title { 'test04' }
     details { 'Factoryで作ったデフォルトのコンテント3' }
     deadline { '2019/09/04' }
-    priority { '99' }
+    priority { 'low' }
     status { '未着手' }
     created_at {'2019/10/07 00:00:00'}
   end
@@ -34,7 +34,7 @@ FactoryBot.define do
     title { 'test05' }
     details { 'Factoryで作ったデフォルトのコンテント2' }
     deadline { '2019/09/02' }
-    priority { '99' }
+    priority { 'middle' }
     status { '完了' }
     created_at {'2019/10/08 00:00:00'}
   end
@@ -43,7 +43,7 @@ FactoryBot.define do
     title { 'testtest05' }
     details { 'test_5' }
     deadline { '2019/09/01' }
-    priority { '99' }
+    priority { 'high' }
     status { '着手' }
     created_at {'2019/10/09 00:00:00'}
   end
@@ -73,7 +73,7 @@ RSpec.feature "タスク管理機能", type: :feature do
     fill_in 'task[title]', with: 'test01'
     fill_in 'task[details]', with: 'test01_詳細'
     fill_in 'task[deadline]', with: '2019/08/01'
-    select '99', from: 'task[priority]'
+    select '高', from: 'task[priority]'
     select '未着手', from: 'task[status]'
     click_on '登録する'
     expect(page).to have_content 'test01'
@@ -143,6 +143,17 @@ RSpec.feature "タスク管理機能", type: :feature do
     tasks = page.all('.title')
     expect(tasks.length).to eq 1
     expect(tasks[0]).to have_content 'testtest05'
+  end
+
+  scenario "タスクが優先順位に並んでいるかのテスト" do
+    visit tasks_path
+    click_on '優先順位でソートする'
+    tasks = page.all('.priority')
+    expect(tasks[0]).to have_content '高'
+    expect(tasks[1]).to have_content '高'
+    expect(tasks[2]).to have_content '中'
+    expect(tasks[3]).to have_content '低'
+    expect(tasks[4]).to have_content '低'
   end
   # save_and_open_page
 end
