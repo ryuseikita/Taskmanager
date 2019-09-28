@@ -47,11 +47,21 @@ FactoryBot.define do
     status { '着手' }
     created_at {'2019/10/09 00:00:00'}
   end
+  factory :zero_task, class: Task do
+    id{'7'}
+    title { 'test00' }
+    details { 'test_00' }
+    deadline { '2019/08/30' }
+    priority { 'low' }
+    status { '着手' }
+    created_at {'2019/7/01 00:00:00'}
+  end
 end
 # このRSpec.featureの右側に、「タスク管理機能」のように、テスト項目の名称を書きます（do ~ endでグループ化されています）
 RSpec.feature "タスク管理機能", type: :feature do
   background do
     FactoryBot.create(:task)
+    FactoryBot.create(:zero_task)
     FactoryBot.create(:second_task)
     FactoryBot.create(:third_task)
     FactoryBot.create(:task_another)
@@ -76,6 +86,7 @@ RSpec.feature "タスク管理機能", type: :feature do
     select '高', from: 'task[priority]'
     select '未着手', from: 'task[status]'
     click_on '登録する'
+    click_on '2'
     expect(page).to have_content 'test01'
   end
 
@@ -154,6 +165,14 @@ RSpec.feature "タスク管理機能", type: :feature do
     expect(tasks[2]).to have_content '中'
     expect(tasks[3]).to have_content '低'
     expect(tasks[4]).to have_content '低'
+  end
+
+  scenario "ページネーションが適用できているかテスト" do
+    visit tasks_path
+    click_on '2'
+    tasks = page.all('.title')
+    expect(tasks.length).to eq 1
+    expect(tasks[0]).to have_content 'test00'
   end
   # save_and_open_page
 end
