@@ -1,13 +1,21 @@
 <h1><%= t('.title') %></h1>
-  <p><%= t('tasks.title') %></p>
-  <p><%= @task.title %></p>
-  <p><%= t('tasks.details') %></p>
-  <p><%= @task.details %></p>
-  <p><%= t('tasks.deadline') %></p>
-  <p><%= @task.deadline.strftime("%Y年%m月%d日")  %></p>
+  <div class="form-group"><%= t('tasks.title') %></p>
+    <p><%= @task.title %></p>
+  </div>
+  <div class="form-group">
+    <p><%= t('tasks.details') %></p>
+    <p><%= @task.details %></p>
+  </div>
+    <p><%= t('tasks.deadline') %></p>
+    <p><%= @task.deadline.strftime("%Y年%m月%d日")  %></p>
+  </div>
+  <div class="form-group">
   <p><%= t('tasks.priority') %></p>
   <p><%= @task.priority %></p>
-  <p><%= t('tasks.statas') %></p>
+  </div>
+  <div class="form-group">
   <p><%= @task.status %></p>
+  <p><%= t('tasks.statas') %></p>
+  </div>
 
 <%= link_to t('tasks.back'), tasks_path %>

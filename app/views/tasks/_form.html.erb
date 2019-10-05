@@ -6,18 +6,30 @@
         <% end %>
       </ul>
   <% end %>
+  <div class="container-fluid">
     <%= form_with(model: @task, local: true ) do |form| %>
-      <%= form.label :title %>
-      <%= form.text_field :title %>
-      <%= form.label :details %>
-      <%= form.text_field :details %>
-      <%= form.label :deadline %>
+      <div class="form-group">
+        <%= form.label :title %><br>
+        <%= form.text_field :title %>
+      </div>
+      <div class="form-group">
+        <%= form.label :details %><br>
+        <%= form.text_field :details %>
+      </div>
+      <div class="form-group">
+      <%= form.label :deadline %><br>
       <%= form.datetime_field :deadline %>
-      <%= form.label :priority %>
+      </div>
+      <div class="form-group">
+      <%= form.label :priority %><br>
       <%= form.select :priority, Task.priorities.keys.map {|k| [t("enums.task.priority.#{k}"), k]} %>
-      <%= form.label :status %>
+      </div>
+      <div class="form-group">
+      <%= form.label :status %><br>
       <%= form.select :status,["未着手","着手","完了"] %>
-      <%= form.submit %>
+      </div>
+      <%= form.submit class:'btn btn-default'%>
     <% end %>
-
+  </div>
+<br>
     <%= link_to "タスク一覧画面にもどる", tasks_path%>
