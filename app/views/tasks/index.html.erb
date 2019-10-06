@@ -24,7 +24,7 @@
     </tr>
     <% @tasks.each do |task| %>
       <tr>
-        <td class='title'><%= task.title %></td>
+        <td class='title_content'><%= task.title %></td>
         <td><%= task.details %></td>
         <td class='deadline'><%= task.deadline.strftime("%Y年%m月%d日")  %></td>
         <td class='priority'><%= task.priority_i18n %></td>

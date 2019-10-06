@@ -4,7 +4,7 @@ FactoryBot.define do
   factory :task do
     id{'2'}
     title { 'test02' }
-    details { 'samplesample' }
+    details { 'test02_details' }
     deadline { '2019/09/01' }
     priority { 'low' }
     status { '完了' }
@@ -13,18 +13,18 @@ FactoryBot.define do
   factory :second_task, class: Task do
     id{'3'}
     title { 'test03' }
-    details { 'Factoryで作ったデフォルトのコンテント2' }
+    details { 'test03_details' }
     deadline { '2019/09/03' }
-    priority { 'high' }
+    priority { 'middle' }
     status { '未着手' }
     created_at {'2019/10/06 00:00:00'}
   end
   factory :third_task, class: Task do
     id{'4'}
     title { 'test04' }
-    details { 'Factoryで作ったデフォルトのコンテント3' }
+    details { 'test04_details' }
     deadline { '2019/09/04' }
-    priority { 'low' }
+    priority { 'high' }
     status { '未着手' }
     created_at {'2019/10/07 00:00:00'}
   end
@@ -32,7 +32,7 @@ FactoryBot.define do
   factory :task_another, class: Task do
     id{'5'}
     title { 'test05' }
-    details { 'Factoryで作ったデフォルトのコンテント2' }
+    details { 'test05_details' }
     deadline { '2019/09/02' }
     priority { 'middle' }
     status { '完了' }
@@ -40,8 +40,8 @@ FactoryBot.define do
   end
   factory :quattro_task, class: Task do
     id{'6'}
-    title { 'testtest05' }
-    details { 'test_5' }
+    title { 'test06' }
+    details { 'test06_details' }
     deadline { '2019/09/01' }
     priority { 'high' }
     status { '着手' }
@@ -50,7 +50,7 @@ FactoryBot.define do
   factory :zero_task, class: Task do
     id{'7'}
     title { 'test00' }
-    details { 'test_00' }
+    details { 'test00_details' }
     deadline { '2019/08/30' }
     priority { 'low' }
     status { '着手' }
@@ -86,7 +86,6 @@ RSpec.feature "タスク管理機能", type: :feature do
     select '高', from: 'task[priority]'
     select '未着手', from: 'task[status]'
     click_on '登録する'
-    click_on '2'
     expect(page).to have_content 'test01'
   end
 
@@ -97,8 +96,8 @@ RSpec.feature "タスク管理機能", type: :feature do
 
   scenario "タスクが作成日時の降順に並んでいるかのテスト" do
     visit tasks_path
-    tasks = page.all('.title')
-    expect(tasks[0]).to have_content 'testtest05'
+    tasks = page.all('.title_content')
+    expect(tasks[0]).to have_content 'test06'
     expect(tasks[1]).to have_content 'test05'
     expect(tasks[2]).to have_content 'test04'
     expect(tasks[3]).to have_content 'test03'
@@ -120,7 +119,7 @@ RSpec.feature "タスク管理機能", type: :feature do
     # fill_in 'Status search', with: '未着手'
     select '未着手', from: 'task[status]'
     click_on '検索する'
-    tasks = page.all('.title')
+    tasks = page.all('.title_content')
     expect(tasks[0]).to have_content 'test04'
     expect(tasks[1]).to have_content 'test03'
     expect(tasks[2]).to have_content ''
@@ -130,17 +129,16 @@ RSpec.feature "タスク管理機能", type: :feature do
     visit tasks_path
     fill_in 'task[title]', with: 'test05'
     click_on '検索する'
-    tasks = page.all('.title')
-    expect(tasks.length).to eq 2
-    expect(tasks[0]).to have_content 'testtest05'
-    expect(tasks[1]).to have_content 'test05'
+    tasks = page.all('.title_content')
+    expect(tasks.length).to eq 1
+    expect(tasks[0]).to have_content 'test05'
   end
 
   scenario "タスクのステータス検索ができるかのテスト" do
     visit tasks_path
     select '未着手', from: 'task[status]'
     click_on '検索する'
-    tasks = page.all('.title')
+    tasks = page.all('.title_content')
     expect(tasks.length).to eq 2
     expect(tasks[0]).to have_content 'test04'
     expect(tasks[1]).to have_content 'test03'
@@ -148,12 +146,13 @@ RSpec.feature "タスク管理機能", type: :feature do
 
   scenario "タスクのタイトルとステータスの同時検索ができるかのテスト" do
     visit tasks_path
-    fill_in 'task[title]', with: 'test05'
-    select '着手', from: 'task[status]'
+    fill_in 'task[title]', with: 'test0'
+    select '完了', from: 'task[status]'
     click_on '検索する'
-    tasks = page.all('.title')
-    expect(tasks.length).to eq 1
-    expect(tasks[0]).to have_content 'testtest05'
+    tasks = page.all('.title_content')
+    expect(tasks.length).to eq 2
+    expect(tasks[0]).to have_content 'test05'
+    expect(tasks[1]).to have_content 'test02'
   end
 
   scenario "タスクが優先順位に並んでいるかのテスト" do
@@ -163,14 +162,14 @@ RSpec.feature "タスク管理機能", type: :feature do
     expect(tasks[0]).to have_content '高'
     expect(tasks[1]).to have_content '高'
     expect(tasks[2]).to have_content '中'
-    expect(tasks[3]).to have_content '低'
+    expect(tasks[3]).to have_content '中'
     expect(tasks[4]).to have_content '低'
   end
 
   scenario "ページネーションが適用できているかテスト" do
     visit tasks_path
     click_on '2'
-    tasks = page.all('.title')
+    tasks = page.all('.title_content')
     expect(tasks.length).to eq 1
     expect(tasks[0]).to have_content 'test00'
   end
