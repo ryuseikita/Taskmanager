@@ -1,4 +1,4 @@
-<h1><%= t('.title') %></h1>
+<h1 class="my-3 ml-3"><%= t('.title') %></h1>
 <p><%= notice %></p>
 <%= form_with(model: Task.new,local: true, method: 'get', url: tasks_path) do |form| %>
   <%= form.label :title_search %>
@@ -10,29 +10,35 @@
 
   <%= form.submit t('.search')%>
 <% end %>
-  <table>
+<div class="col-ml-3">
+  <table class="table table-striped">
     <tr >
-      <td><%= t('tasks.title') %></td>
-      <td><%= t('tasks.details') %></td>
+      <td class='title'><%= t('tasks.title') %></td>
+      <td class='details'><%= t('tasks.details') %></td>
       <td><%= t('tasks.deadline') %></td>
       <td><%= t('tasks.priority') %></td>
       <td><%= t('tasks.status') %></td>
+      <td></td>
+      <td></td>
+      <td></td>
     </tr>
     <% @tasks.each do |task| %>
       <tr>
-        <td class='title'><%= task.title %></td>
+        <td class='title_content'><%= task.title %></td>
         <td><%= task.details %></td>
         <td class='deadline'><%= task.deadline.strftime("%Y年%m月%d日")  %></td>
         <td class='priority'><%= task.priority_i18n %></td>
         <td class='status'><%= task.status %></td>
-        <td><%= link_to  t('.show') , task_path(task) %></td>
-        <td><%= link_to  t('.edit') , edit_task_path(task) %></td>
-        <td><%= link_to  t('.delete') , task, method: :delete %></td>
+        <td><%= link_to  t('.show') , task_path(task) , class: 'btn btn-default'%></td>
+        <td><%= link_to  t('.edit') , edit_task_path(task) , class: 'btn btn-info'%></td>
+        <td><%= link_to  t('.delete') , task, method: :delete , class: 'btn btn-danger'%></td>
       </tr>
     <% end %>
   </table>
-<%= paginate @tasks %>
+</div>
+<div class='test'><%= paginate @tasks %></div>
 
-<%= link_to t('tasks.new_task'), new_task_path %>
-<%= link_to t('tasks.deadline_sort_task'), tasks_path(sort_expired: "true") %>
-<%= link_to t('tasks.priority_sort_task'), tasks_path(sort_priority: "true") %>
+<%= link_to t('tasks.deadline_sort_task'), tasks_path(sort_expired: "true"),class:"btn btn-info" %>
+<%= link_to t('tasks.priority_sort_task'), tasks_path(sort_priority: "true"),class:"btn btn-info" %>
+<br><br>
+<%= link_to t('tasks.new_task'), new_task_path,class:"btn btn-primary btn-lg" %>
