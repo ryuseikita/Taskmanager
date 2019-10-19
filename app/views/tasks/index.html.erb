@@ -1,5 +1,7 @@
 <h1 class="my-3 ml-3"><%= t('.title') %></h1>
-<p><%= notice %></p>
+<p class="notice-info ">
+    <%= notice %>
+</p>
 <%= form_with(model: Task.new,local: true, method: 'get', url: tasks_path) do |form| %>
   <%= form.label :title_search %>
   <%= form.text_field :title %>
