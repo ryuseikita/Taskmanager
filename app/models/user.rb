@@ -5,4 +5,6 @@ class User < ApplicationRecord
   validates :email, uniqueness: true
   has_secure_password
   has_many :tasks
+
+  scope :login_user, -> {find(current_user.id)}
 end
