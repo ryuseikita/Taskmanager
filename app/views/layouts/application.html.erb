@@ -23,9 +23,19 @@
         </div>
         <div id="gnavi" class="collapse navbar-collapse">
           <ul class="nav navbar-nav">
-            <li><%= link_to t('tasks.new_task'), new_task_path%></li>
-            <li><a href="">menu1</a></li>
-            <li><a href="">menu2</a></li>
+            <% if logged_in? %>
+              <li><%= link_to t('tasks.new_task'), new_task_path%></li>
+            <% end %>
+            </ul>
+            <ul class="nav navbar-nav navbar-right">
+            <% if logged_in? %>
+              <li><%= link_to current_user.name, user_path(current_user.id) ,class:'nav-item' %></li>
+            <% end %>
+            <li>
+              <% if logged_in? %>
+                <%= link_to "ログアウト", session_path(current_user.id), method: :delete %>
+              <% end %>
+            </li>
           </ul>
         </div>
       </div>

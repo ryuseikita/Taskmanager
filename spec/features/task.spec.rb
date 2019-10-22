@@ -1,82 +1,24 @@
-# このrequireで、Capybaraなどの、Feature Specに必要な機能を使用可能な状態にしています
 require 'rails_helper'
-FactoryBot.define do
-  factory :task do
-    id{'2'}
-    title { 'test02' }
-    details { 'test02_details' }
-    deadline { '2019/09/01' }
-    priority { 'low' }
-    status { '完了' }
-    created_at {'2019/10/05 00:00:00'}
-  end
-  factory :second_task, class: Task do
-    id{'3'}
-    title { 'test03' }
-    details { 'test03_details' }
-    deadline { '2019/09/03' }
-    priority { 'middle' }
-    status { '未着手' }
-    created_at {'2019/10/06 00:00:00'}
-  end
-  factory :third_task, class: Task do
-    id{'4'}
-    title { 'test04' }
-    details { 'test04_details' }
-    deadline { '2019/09/04' }
-    priority { 'high' }
-    status { '未着手' }
-    created_at {'2019/10/07 00:00:00'}
-  end
-
-  factory :task_another, class: Task do
-    id{'5'}
-    title { 'test05' }
-    details { 'test05_details' }
-    deadline { '2019/09/02' }
-    priority { 'middle' }
-    status { '完了' }
-    created_at {'2019/10/08 00:00:00'}
-  end
-  factory :quattro_task, class: Task do
-    id{'6'}
-    title { 'test06' }
-    details { 'test06_details' }
-    deadline { '2019/09/01' }
-    priority { 'high' }
-    status { '着手' }
-    created_at {'2019/10/09 00:00:00'}
-  end
-  factory :zero_task, class: Task do
-    id{'7'}
-    title { 'test00' }
-    details { 'test00_details' }
-    deadline { '2019/08/30' }
-    priority { 'low' }
-    status { '着手' }
-    created_at {'2019/7/01 00:00:00'}
-  end
-end
 # このRSpec.featureの右側に、「タスク管理機能」のように、テスト項目の名称を書きます（do ~ endでグループ化されています）
 RSpec.feature "タスク管理機能", type: :feature do
   background do
+    FactoryBot.create(:first_user)
     FactoryBot.create(:task)
     FactoryBot.create(:zero_task)
     FactoryBot.create(:second_task)
     FactoryBot.create(:third_task)
     FactoryBot.create(:task_another)
     FactoryBot.create(:quattro_task)
+    visit tasks_path
+    fill_in 'session[email]', with: 'specuser02@gmail.com'
+    fill_in 'session[password]', with: 'password'
+    click_on 'ログイン'
   end
   scenario "タスク一覧のテスト" do
-      # tasks_pathにvisitする（タスク一覧ページに遷移する）
       visit tasks_path
-
-      # visitした（到着した）expect(page)に（タスク一覧ページに）「testtesttest」「samplesample」という文字列が
-      # have_contentされているか？（含まれているか？）ということをexpectする（確認・期待する）テストを書いている
       expect(page).to have_content 'test02'
       expect(page).to have_content 'test03'
   end
-
   scenario "タスク作成のテスト" do
     visit new_task_path
 

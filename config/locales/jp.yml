@@ -25,6 +25,12 @@ ja:
       title: タスクの作成
     show:
       title: タスクの詳細
+  users:
+    show:
+      title: マイページ
+      name: 名前
+      email: メールアドレス
+      back: タスク一覧に戻る
   activerecord:
     errors:
       messages:

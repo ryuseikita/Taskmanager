@@ -2,7 +2,11 @@ class TasksController < ApplicationController
   before_action :set_task, only:[:edit,:update,:show,:destroy]
 
   def index
-    @tasks = Task.list(params).page(params[:page]).per(5)
+    unless logged_in?
+      redirect_to new_session_path
+    else
+      @tasks = Task.where(user_id: current_user.id).list(params).page(params[:page]).per(5)
+    end
   end
 
   def new
@@ -10,7 +14,7 @@ class TasksController < ApplicationController
   end
 
   def create
-    @task = Task.new(task_params)
+    @task = current_user.tasks.build(task_params)
     if @task.save
      redirect_to tasks_path, notice: "タスクを作成しました"
     else

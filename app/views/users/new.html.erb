@@ -1,0 +1,30 @@
+<% if @user.errors.any? %>
+  <h2><%= @user.errors.count %>件のエラーがあります。</h2>
+    <ul>
+      <% @user.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+    </ul>
+<% end %>
+<div class="container-fluid">
+  <%= form_with(model: @user, local: true ) do |f| %>
+    <div class="form-group">
+      <%= f.label :name %><br>
+      <%= f.text_field :name %>
+    </div>
+    <div class="form-group">
+      <%= f.label :email %><br>
+      <%= f.email_field :email %>
+    </div>
+    <div class="form-group">
+      <%= f.label :password %><br>
+      <%= f.password_field :password %>
+    </div>
+    <div class="form-group">
+      <%= f.label :password_confirmation %><br>
+      <%= f.password_field :password_confirmation %>
+    </div>
+
+    <%= f.submit class:'btn btn-default'%>
+  <% end %>
+</div>
