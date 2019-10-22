@@ -34,8 +34,6 @@
             <li>
               <% if logged_in? %>
                 <%= link_to "ログアウト", session_path(current_user.id), method: :delete %>
-              <% else %>
-                <%= link_to "ログイン", new_session_path %>
               <% end %>
             </li>
           </ul>
