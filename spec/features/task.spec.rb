@@ -10,7 +10,7 @@ RSpec.feature "タスク管理機能", type: :feature do
     FactoryBot.create(:task_another)
     FactoryBot.create(:quattro_task)
     visit tasks_path
-    fill_in 'session[email]', with: 'specuser01@gmail.com'
+    fill_in 'session[email]', with: 'specuser02@gmail.com'
     fill_in 'session[password]', with: 'password'
     click_on 'ログイン'
   end

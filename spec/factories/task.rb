@@ -7,7 +7,7 @@ FactoryBot.define do
       priority { 'low' }
       status { '完了' }
       created_at {'2019/10/05 00:00:00'}
-      user_id {'1'}
+      user_id {'2'}
     end
     factory :second_task, class: Task do
       id{'3'}
@@ -17,7 +17,7 @@ FactoryBot.define do
       priority { 'middle' }
       status { '未着手' }
       created_at {'2019/10/06 00:00:00'}
-      user_id {'1'}
+      user_id {'2'}
     end
     factory :third_task, class: Task do
       id{'4'}
@@ -27,7 +27,7 @@ FactoryBot.define do
       priority { 'high' }
       status { '未着手' }
       created_at {'2019/10/07 00:00:00'}
-      user_id {'1'}
+      user_id {'2'}
     end
   
     factory :task_another, class: Task do
@@ -38,7 +38,7 @@ FactoryBot.define do
       priority { 'middle' }
       status { '完了' }
       created_at {'2019/10/08 00:00:00'}
-      user_id {'1'}
+      user_id {'2'}
     end
     factory :quattro_task, class: Task do
       id{'6'}
@@ -48,7 +48,7 @@ FactoryBot.define do
       priority { 'high' }
       status { '着手' }
       created_at {'2019/10/09 00:00:00'}
-      user_id {'1'}
+      user_id {'2'}
     end
     factory :zero_task, class: Task do
       id{'7'}
@@ -58,6 +58,6 @@ FactoryBot.define do
       priority { 'low' }
       status { '着手' }
       created_at {'2019/7/01 00:00:00'}
-      user_id {'1'}
+      user_id {'2'}
     end
 end
