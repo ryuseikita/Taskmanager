@@ -1,0 +1,12 @@
+<h1>管理画面のユーザー一覧</h1>
+<div class="col-ml-3">
+  <table class="table table-striped">
+    <% x = 0%>
+    <% @user.each do |user| %>
+        <tr>
+        <td><%= x = x + 1 %></td>
+        <td><%= user.name %></td>
+        <tr>
+    <% end %>
+  </table>
+<div>
