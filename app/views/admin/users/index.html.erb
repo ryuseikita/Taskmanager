@@ -1,11 +1,11 @@
 <h1>管理画面のユーザー一覧</h1>
 <div class="col-ml-3">
   <table class="table table-striped">
-    <% x = 0%>
     <% @user.each do |user| %>
         <tr>
-        <td><%= x = x + 1 %></td>
+        <td><%= user.id %></td>
         <td><%= user.name %></td>
+        <td><%= link_to  "削除" , admin_user_path(user.id), method: :delete, data: { confirm: '削除しますか？' } , class: 'btn btn-danger'%></td>
         <tr>
     <% end %>
   </table>
