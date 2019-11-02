@@ -2,7 +2,7 @@ class Admin::UsersController < ApplicationController
   before_action :admin_check
   before_action :set_user, only:[:edit,:update,:show,:destroy]
   def index
-    @user = User.all
+    @user = User.all.order(:id)
   end
 
   def new
@@ -22,7 +22,11 @@ class Admin::UsersController < ApplicationController
   end
 
   def update
-    #未修正
+    if @user.update(user_params)
+      redirect_to admin_users_path
+    else
+      render 'edit'
+    end
   end
 
   def show
