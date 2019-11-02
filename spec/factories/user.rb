@@ -6,6 +6,7 @@ FactoryBot.define do
       email {'specuser02@gmail.com'}
       password {'password'}
       password_confirmation {'password'}
+      admin{'false'}
     end
     factory :second_user, class: User do
       id{'3'}
@@ -13,6 +14,7 @@ FactoryBot.define do
       email {'specuser03@gmail.com'}
       password {'password'}
       password_confirmation {'password'}
+      admin{'true'}
     end
   end
 end

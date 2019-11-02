@@ -33,8 +33,14 @@ class Admin::UsersController < ApplicationController
   end
 
   def destroy
-    if anotheradmin_check
-      @user.destroy
+    #if anotheradmin_check
+    #  @user.destroy
+    #  redirect_to admin_users_path,notice: "ユーザを削除しました"
+    #elsif
+    #  redirect_to admin_users_path,notice: "ERROR:管理者ユーザが存在しなくなるため、削除できません"
+    #end
+
+    if @user.destroy
       redirect_to admin_users_path,notice: "ユーザを削除しました"
     elsif
       redirect_to admin_users_path,notice: "ERROR:管理者ユーザが存在しなくなるため、削除できません"
