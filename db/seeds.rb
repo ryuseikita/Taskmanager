@@ -1,5 +1,5 @@
 name = 'administrator'
-email = 'administrator@gmail.com'
+email = 'administrator@example.com'
 password = 'password'
 User.create!(name: name,
              email: email,
