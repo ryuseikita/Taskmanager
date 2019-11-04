@@ -120,7 +120,6 @@ RSpec.feature "ユーザ機能", type: :feature do
     fill_in 'user[password_confirmation]', with: 'password'
     click_on '更新する'
     expect(page).to have_content 'specuser02_new'
-    save_and_open_page
   end
 
   #save_and_open_page
