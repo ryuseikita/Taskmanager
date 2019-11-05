@@ -1,0 +1,26 @@
+<h1>タスク一覧　ユーザ：<%= @user.name %>　</h1>
+<div class="form-group">
+  <p>メール: <%= @user.email %></p>
+</div>
+
+<div class="col-ml-3">
+  <table class="table table-striped">
+    <tr>
+      <td class='title'><%= t('tasks.title') %></td>
+      <td class='details'><%= t('tasks.details') %></td>
+      <td><%= t('tasks.deadline') %></td>
+      <td><%= t('tasks.priority') %></td>
+      <td><%= t('tasks.status') %></td>
+    </tr>
+    <% @user.tasks.each do |task| %>
+      <tr>
+        <td class='title_content'><%= task.title %></td>
+        <td><%= task.details %></td>
+        <td class='deadline'><%= task.deadline.strftime("%Y年%m月%d日")  %></td>
+        <td class='priority'><%= task.priority_i18n %></td>
+        <td class='status'><%= task.status %></td>
+      </tr>
+    <% end %>
+  </table>
+
+<%= link_to '戻る' , admin_users_path %>

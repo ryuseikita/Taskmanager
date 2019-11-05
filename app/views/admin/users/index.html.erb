@@ -1,0 +1,21 @@
+<h1>管理画面:ユーザ 一覧</h1>
+<p class="notice-error ">
+    <%= notice %>
+</p>
+<div class="col-ml-3">
+  <table class="table table-striped">
+    <% @user.each do |user| %>
+        <tr>
+        <td><%= user.id %></td>
+        <td><%= user.name %></td>
+        <td>タスク数 :<%= user.tasks.count %></td>
+        <td><%= link_to  "詳細" , admin_user_path(user.id) , class: 'btn btn-default'%></td>
+        <td><%= link_to  "編集" , edit_admin_user_path(user.id) , class: 'btn btn-info'%></td>
+        <td><%= link_to  "削除" , admin_user_path(user.id), method: :delete, data: { confirm: '削除しますか？' } , class: 'btn btn-danger delete'%></td>
+        <tr>
+    <% end %>
+  </table>
+  <%= link_to "新しいアカウントの作成", new_admin_user_path,class:"btn btn-primary btn-sm" %>
+</div>
+</div>
+
