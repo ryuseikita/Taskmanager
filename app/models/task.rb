@@ -6,6 +6,8 @@ class Task < ApplicationRecord
   enum priority:{low: 0,middle: 1,high: 2}
   validates :status, presence: true
   belongs_to :user
+  has_many :tags,dependent: :destroy
+  has_many :labels, through: :tags
   
   scope :create_time_desc, -> {order(created_at: :desc)}
   scope :deadline_time_desc, -> {order(deadline: :desc)}

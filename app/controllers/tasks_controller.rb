@@ -11,6 +11,7 @@ class TasksController < ApplicationController
 
   def new
     @task = Task.new(deadline: Time.now.strftime("%Y/%m/%d 00:00"))
+    @task.labels.build
   end
 
   def create
@@ -44,7 +45,7 @@ class TasksController < ApplicationController
   private
 
   def task_params
-    params.require(:task).permit(:title,:details,:deadline,:priority,:status)
+    params.require(:task).permit(:title,:details,:deadline,:priority,:status,{ :label_ids=> [] })
 
   end
 
