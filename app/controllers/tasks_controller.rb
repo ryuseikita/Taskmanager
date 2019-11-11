@@ -5,7 +5,12 @@ class TasksController < ApplicationController
     unless logged_in?
       redirect_to new_session_path
     else
-      @tasks = Task.where(user_id: current_user.id).list(params).page(params[:page]).per(5)
+      @tasks = Task.where(user_id: current_user.id).list(params)
+      if @tasks.present?
+        @tasks = @tasks.page(params[:page]).per(5)
+      else
+        redirect_to tasks_path,notice: "タスクがありません。"
+      end
     end
   end
 
@@ -38,7 +43,7 @@ class TasksController < ApplicationController
   end
 
   def destroy
-    @task.delete
+    @task.destroy
     redirect_to tasks_path, notice: "タスクを削除しました！"
   end
 
@@ -52,6 +57,4 @@ class TasksController < ApplicationController
   def set_task
     @task = Task.find(params[:id])
   end
-
-
 end
