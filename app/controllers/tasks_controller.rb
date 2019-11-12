@@ -5,12 +5,7 @@ class TasksController < ApplicationController
     unless logged_in?
       redirect_to new_session_path
     else
-      @tasks = Task.where(user_id: current_user.id).list(params)
-      if @tasks.present?
-        @tasks = @tasks.page(params[:page]).per(5)
-      else
-        redirect_to tasks_path,notice: "タスクがありません。"
-      end
+      @tasks = Task.where(user_id: current_user.id).list(params).page(params[:page]).per(5)
     end
   end
 
