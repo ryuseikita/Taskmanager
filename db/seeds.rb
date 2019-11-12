@@ -8,11 +8,11 @@ User.create!(name: name,
              admin: 'true'
 )
 Label.create(
-    name:test01
+    name: 'test01'
 )
 Label.create(
-    name:test02
+    name:'test02'
 )
 Label.create(
-    name:test03
+    name:'test03'
 )
