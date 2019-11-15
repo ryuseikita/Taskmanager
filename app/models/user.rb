@@ -8,7 +8,7 @@ class User < ApplicationRecord
   has_many :tasks ,dependent: :destroy
 
   scope :login_user, -> {find(current_user.id)}
-  scope :admin_count, -> {where(admin: 'ture').count}
+  scope :admin_count, -> {where(admin: true).count}
 
   private
 

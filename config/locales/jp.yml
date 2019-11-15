@@ -9,6 +9,8 @@ ja:
     new_task: 新規作成
     deadline_sort_task: 終了期限でソートする
     priority_sort_task: 優先順位でソートする
+    label: ラベル
+    back: 一覧に戻る
     index:
       title: タスクの一覧
       edit: 編集

@@ -96,6 +96,10 @@ GEM
     ffi (1.11.1)
     globalid (0.4.2)
       activesupport (>= 4.2.0)
+    hirb (0.7.3)
+    hirb-unicode (0.0.5)
+      hirb (~> 0.5)
+      unicode-display_width (~> 0.1.1)
     i18n (1.6.0)
       concurrent-ruby (~> 1.0)
     kaminari (1.1.1)
@@ -230,6 +234,7 @@ GEM
       thread_safe (~> 0.1)
     uglifier (4.1.20)
       execjs (>= 0.3.0, < 3)
+    unicode-display_width (0.1.1)
     web-console (4.0.1)
       actionview (>= 6.0.0)
       activemodel (>= 6.0.0)
@@ -257,6 +262,8 @@ DEPENDENCIES
   database_cleaner
   enum_help
   factory_bot_rails
+  hirb
+  hirb-unicode
   kaminari
   launchy
   listen (>= 3.0.5, < 3.2)

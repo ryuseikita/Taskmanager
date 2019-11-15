@@ -14,8 +14,15 @@
   <p><%= @task.priority %></p>
   </div>
   <div class="form-group">
+  <p><%= t('tasks.status') %></p>
   <p><%= @task.status %></p>
-  <p><%= t('tasks.statas') %></p>
+  </div>
+
+  <div class="form-group">
+  <p><%= t('tasks.label') %></p>
+  <% @task.labels.each do |label| %>
+    <p class='label'><%= label.name %></p>
+  <% end %>
   </div>
 
 <%= link_to t('tasks.back'), tasks_path %>

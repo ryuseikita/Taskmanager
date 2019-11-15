@@ -6,7 +6,9 @@
   <%= form.label :title_search %>
   <%= form.text_field :title %>
   <%= form.label :status_search %>
-  <%= form.select :status,[[t('.default'),""],[t('.not_start'),t('.not_start')],[t('.start'),t('.start')],[t('.complete'),t('.complete')]] %>
+  <%= form.select :status,[[t('.not_start'),t('.not_start')],[t('.start'),t('.start')],[t('.complete'),t('.complete')]],{include_blank: '選択してください'} %>
+  <%= form.label :tag_search %>
+  <%= form.select :label, Label.all.map { |label| [ label.name,label.id ] },{include_blank: '選択してください'}  %>
 
   <%= form.hidden_field :search, value: "true"%>
 

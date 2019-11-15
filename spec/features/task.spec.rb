@@ -9,6 +9,12 @@ RSpec.feature "タスク管理機能", type: :feature do
     FactoryBot.create(:third_task)
     FactoryBot.create(:task_another)
     FactoryBot.create(:quattro_task)
+    FactoryBot.create(:label01)
+    FactoryBot.create(:label02)
+    FactoryBot.create(:label03)
+    FactoryBot.create(:tag01)
+    FactoryBot.create(:tag02)
+    FactoryBot.create(:tag03)
     visit tasks_path
     fill_in 'session[email]', with: 'specuser02@gmail.com'
     fill_in 'session[password]', with: 'password'
@@ -32,7 +38,7 @@ RSpec.feature "タスク管理機能", type: :feature do
   end
 
   scenario "タスク詳細のテスト" do
-    visit task_path(5)
+    visit task_path(13)
     expect(page).to have_content 'test05'
   end
 
@@ -115,5 +121,41 @@ RSpec.feature "タスク管理機能", type: :feature do
     expect(tasks.length).to eq 1
     expect(tasks[0]).to have_content 'test00'
   end
+
+  scenario "タスクの作成時にラベルを付与できること" do
+    visit new_task_path
+
+    fill_in 'task[title]', with: 'test02'
+    fill_in 'task[details]', with: 'test02_詳細'
+    fill_in 'task[deadline]', with: '2019/08/01'
+    select '高', from: 'task[priority]'
+    select '未着手', from: 'task[status]'
+    check 'ラベルテスト003'
+    click_on '登録する'
+    visit task_path(2)
+    expect(page).to have_content 'ラベルテスト003'
+  end
+
+  scenario "タスクのラベル検索ができていることを確認する。" do
+    visit tasks_path
+    select '2', from: 'task[label]'
+    click_on '検索する'
+    tasks = page.all('.title_content')
+    expect(tasks.length).to eq 2
+    expect(tasks[0]).to have_content 'test03'
+    expect(tasks[1]).to have_content 'test02'
+  end
+
+  scenario "タスクのタイトル＆優先度＆ラベル検索ができていることを確認する。" do
+    visit tasks_path
+    fill_in 'task[title]', with: 'test'
+    select '完了', from: 'task[status]'
+    select '2', from: 'task[label]'
+    click_on '検索する'
+    tasks = page.all('.title_content')
+    expect(tasks.length).to eq 1
+    expect(tasks[0]).to have_content 'test02'
+  end
+  
   # save_and_open_page
 end

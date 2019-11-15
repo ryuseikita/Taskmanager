@@ -8,6 +8,12 @@
   <% end %>
   <div class="container-fluid">
     <%= form_with(model: @task, local: true ) do |form| %>
+      <div class="field">
+    <%= form.label :tags %><br>
+    <%= collection_check_boxes(:task, :label_ids, Label.all, :id, :name ) do |t|  %>
+      <% t.label { t.check_box + t.text } %>
+    <% end %> 
+    </div>
       <div class="form-group">
         <%= form.label :title %><br>
         <%= form.text_field :title %>
